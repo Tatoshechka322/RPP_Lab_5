@@ -1,1 +1,17 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>Реализация страницы регистрации и авторизации с помощью микрофреймворка Flask</h1>
+    <p>Цель работы – освоить базовые принципы работы с Flask-Login и научиться создавать безопасные и
+        удобные механизмы входа в систему, регистрации и выхода из нее</p>
+    {% if current_user.is_authenticated %}
+        <a class="button_exist" href="{{ url_for('logout') }}">Выход</a>
+    {% endif %}
+</body>
+</html>
