@@ -1,1 +1,44 @@
+body {
+    background-color: #f0f0f5; /* Light gray background */
+    font-family: 'Arial', sans-serif; /* A common and widely available sans-serif font */
+    line-height: 1.6; /* Improves readability */
+    margin: 20px; /* Adds some margin around the content */
+    color: #333; /* Dark gray text color */
+}
 
+.button1, .button2 { /* Combine styles for both buttons */
+    background-color: #4CAF50; /* Green button color */
+    border: none; /* Remove default button border */
+    padding: 10px 20px; /* Add some padding for better click area */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px; /* Adjust margin for better spacing */
+    border-radius: 5px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    color: white; /* White text color */
+    transition: background-color 0.3s ease; /* Add smooth transition on hover */
+}
+
+.button1:hover, .button2:hover { /* Hover effect for buttons */
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.error1 {
+    color: #d9534f; /* Red color for error messages */
+    width: 400px;
+    text-align: center;
+    margin: 20px auto; /* Center the error message horizontally */
+    padding: 10px;
+    border: 1px solid #d9534f; /* Add a border around the error message */
+    background-color: #f2dede; /* Light red background for error message */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.button_exist {
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #d9534f; /* Red color */
+    font-weight: bold; /* Make the text bold */
+}
