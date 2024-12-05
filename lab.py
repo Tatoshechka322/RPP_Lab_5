@@ -5,11 +5,11 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.secret_key = '09990'
-user_db = "ershtrub"
+user_db = "bokov"
 host_ip = "127.0.0.1"
 host_port = "5432"
-database_name = "lab5"
-password = "postgres"
+database_name = "RPP_5"
+password = "12345"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user_db}:{password}@{host_ip}:{host_port}/{database_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
