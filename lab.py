@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
 app.secret_key = '09990'
-user_db = "ershtrub"
+user_db = "bokov"
 host_ip = "127.0.0.1"
 host_port = "5432"
 database_name = "lab5"
