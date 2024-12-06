@@ -1,15 +1,16 @@
-rom flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
 app.secret_key = '09990'
-user_db = "bokov"
+user_db = "ershtrub"
 host_ip = "127.0.0.1"
 host_port = "5432"
-database_name = "RPP_5"
-password = "12345"
+database_name = "lab5"
+password = "postgres"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user_db}:{password}@{host_ip}:{host_port}/{database_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -59,15 +60,15 @@ def login():
     if user is None:
         errors.append('Такой пользователь отсутствует')
 
-    # Ошибка: неправильный пароль
-    if user and user.password != password:
+    # Правильное сравнение паролей:
+    elif user and not check_password_hash(user.password, password):
         errors.append('Неверный пароль')
 
-    if user and user.password == password:
+    if not errors:
         login_user(user)
         return redirect(url_for('index'))
 
-    return render_template('login.html', errors=errors, email=email, password=password)
+    return render_template('login.html', errors=errors, email=email)
 
 # Страница регистрации
 @app.route('/signup', methods=['GET', 'POST'])
@@ -80,7 +81,8 @@ def signup():
         if user:
             return render_template('signup.html', error='Пользователь с таким логином уже существует')
 
-        new_user = User(email=email, password=password, name=name)
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')  # Хэширование пароля
+        new_user = User(email=email, password=hashed_password, name=name)
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
